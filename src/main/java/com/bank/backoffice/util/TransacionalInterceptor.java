@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.Priority;
 import javax.inject.Inject;
+import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ public class TransacionalInterceptor implements Serializable {
 	@Inject
 	private EntityManager manager;
 
+	@AroundInvoke
 	public Object invoke(InvocationContext ctx) throws Exception {
 		EntityTransaction trx = manager.getTransaction();
 		boolean criador = false;
