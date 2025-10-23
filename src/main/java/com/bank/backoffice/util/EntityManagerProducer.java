@@ -13,7 +13,7 @@ public class EntityManagerProducer {
 
 	private EntityManagerFactory factory;
 
-	public EntityManagerProducer(EntityManagerFactory factory) {
+	public EntityManagerProducer() {
 		this.factory = Persistence.createEntityManagerFactory("BankPU");
 	}
 
