@@ -1,0 +1,32 @@
+# ===========================
+# Projeto JSF / PrimeFaces (Eclipse + Maven)
+# ===========================
+
+# Build e dependências
+target/
+*.class
+*.war
+*.ear
+*.jar
+
+# Eclipse / IDE
+.classpath
+.project
+.settings/
+
+# Logs e temporários
+logs/
+*.log
+*.tmp
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# VSCode (caso use também)
+.vscode/
+
+# Arquivos locais
+*.local
+*.env
