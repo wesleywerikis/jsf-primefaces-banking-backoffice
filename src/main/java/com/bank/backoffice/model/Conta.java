@@ -52,7 +52,7 @@ public class Conta implements Serializable {
 
 	@NotNull
 	@Column(nullable = false, precision = 19, scale = 2)
-	private BigDecimal salde = BigDecimal.ZERO;
+	private BigDecimal saldo = BigDecimal.ZERO;
 
 	@Version
 	private Long version;
@@ -97,12 +97,12 @@ public class Conta implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public BigDecimal getSalde() {
-		return salde;
+	public BigDecimal getSaldo() {
+		return saldo;
 	}
 
-	public void setSalde(BigDecimal salde) {
-		this.salde = salde;
+	public void setSaldo(BigDecimal saldo) {
+		this.saldo = saldo;
 	}
 
 	public Long getVersion() {
