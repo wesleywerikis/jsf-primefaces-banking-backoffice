@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<title>Abertura de Conta</title>
+</h:head>
+<h:body>
+	<h:form id="f">
+		<p:messages closable="true" />
+		<p:panel header="Abertura de Conta">
+			<p:panelGrid columns="2" layout="grid">
+				<h:outputLabel for="ag" value="Agência" />
+				<p:inputText id="ag" value="#{aberturaContaBean.conta.agencia}"
+					maxlength="10" required="true" />
+
+				<h:outputLabel for="num" value="Número" />
+				<p:inputText id="num" value="#{aberturaContaBean.conta.numero}"
+					maxlength="20" required="true" />
+
+				<h:outputLabel for="tipo" value="Tipo" />
+				<p:selectOneMenu id="tipo" value="#{aberturaContaBean.conta.tipo}">
+					<f:selectItems value="#{aberturaContaBean.tipos}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel for="cliente" value="Cliente (ID)" />
+				<p:inputText id="cliente"
+					value="#{aberturaContaBean.conta.cliente.id}" required="true" />
+			</p:panelGrid>
+			<p:commandButton value="Abrir"
+				actionListener="#{aberturaContaBean.abrir}" update="@form"
+				icon="pi pi-plus" />
+		</p:panel>
+	</h:form>
+</h:body>
+</html>
