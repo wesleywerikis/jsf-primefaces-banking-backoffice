@@ -28,8 +28,8 @@
 					maxlength="200" />
 			</p:panelGrid>
 			<p:commandButton value="Transferir"
-				actionListener="#{transferenciaBean.transferir}" update="@form"
-				icon="pi pi-check" />
+				action="#{transferenciaBean.transferir}" process="@form"
+				update="@form" icon="pi pi-check" />
 		</p:panel>
 	</h:form>
 </h:body>

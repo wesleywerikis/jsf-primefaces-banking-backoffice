@@ -12,20 +12,22 @@
 			<p:panelGrid columns="2" layout="grid">
 				<h:outputLabel for="nome" value="Nome" />
 				<p:inputText id="nome" value="#{cadastroClienteBean.cliente.nome}"
-					maxlength="120" required="true" />
+					maxlength="120" required="true" label="Nome"
+					requiredMessage="Informe o nome" />
 
 				<h:outputLabel for="cpf" value="CPF" />
 				<p:inputMask id="cpf" value="#{cadastroClienteBean.cliente.cpf}"
-					mask="999.999.999-99" required="true" />
+					mask="999.999.999-99" required="true" label="CPF"
+					requiredMessage="Informe o CPF" />
 
 				<h:outputLabel for="email" value="Email" />
 				<p:inputText id="email" value="#{cadastroClienteBean.cliente.email}"
-					maxlength="120" />
+					maxlength="120" label="Email" requiredMessage="Informe o Email" />
 			</p:panelGrid>
 
 			<p:commandButton value="Salvar"
-				actionListener="#{cadastroClienteBean.salvar}" update="@form"
-				icon="pi pi-check" />
+				action="#{cadastroClienteBean.salvar}" process="@form"
+				update="@form" icon="pi pi-check" />
 		</p:panel>
 	</h:form>
 </h:body>
