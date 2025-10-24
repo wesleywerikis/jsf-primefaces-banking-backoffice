@@ -4,31 +4,62 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Cadastro de Cliente</title>
+	<h:outputStylesheet library="style" name="estilo.css" />
 </h:head>
 <h:body>
-	<h:form id="f">
-		<p:messages closable="true" />
-		<p:panel header="Cadastro de Cliente">
-			<p:panelGrid columns="2" layout="grid">
-				<h:outputLabel for="nome" value="Nome" />
-				<p:inputText id="nome" value="#{cadastroClienteBean.cliente.nome}"
-					maxlength="120" required="true" label="Nome"
-					requiredMessage="Informe o nome" />
 
-				<h:outputLabel for="cpf" value="CPF" />
-				<p:inputMask id="cpf" value="#{cadastroClienteBean.cliente.cpf}"
-					mask="999.999.999-99" required="true" label="CPF"
-					requiredMessage="Informe o CPF" />
+	<header class="app-header">
+		<div class="app-header__inner">
+			<div class="brand">
+				<span class="brand__dot"></span> Cadastro de Cliente
+			</div>
+			<h:link outcome="/index.xhtml" styleClass="btn-link btn-ghost">
+				<span class="pi pi-home"></span> Home
+      </h:link>
+		</div>
+	</header>
 
-				<h:outputLabel for="email" value="Email" />
-				<p:inputText id="email" value="#{cadastroClienteBean.cliente.email}"
-					maxlength="120" label="Email" requiredMessage="Informe o Email" />
-			</p:panelGrid>
+	<!-- ⚙️ Aqui aplicamos a classe compact -->
+	<div class="container compact">
 
-			<p:commandButton value="Salvar"
-				action="#{cadastroClienteBean.salvar}" process="@form"
-				update="@form" icon="pi pi-check" />
-		</p:panel>
-	</h:form>
+		<h1 class="page-title">Cadastrar Novo Cliente</h1>
+
+		<h:form id="f">
+			<p:messages id="messages" closable="true" />
+
+			<h2 class="section-title">Informações do Cliente</h2>
+
+			<div class="card">
+
+				<div class="form-grid form-grid--narrow">
+					<h:outputLabel for="nome" value="Nome" />
+					<p:inputText id="nome" value="#{cadastroClienteBean.cliente.nome}"
+						maxlength="120" required="true" label="Nome"
+						requiredMessage="Informe o nome" />
+
+					<h:outputLabel for="cpf" value="CPF" />
+					<p:inputMask id="cpf" value="#{cadastroClienteBean.cliente.cpf}"
+						mask="999.999.999-99" required="true" label="CPF"
+						requiredMessage="Informe o CPF" />
+
+					<h:outputLabel for="email" value="Email" />
+					<p:inputText id="email"
+						value="#{cadastroClienteBean.cliente.email}" maxlength="120"
+						label="Email" />
+				</div>
+
+				<div class="stack-16"></div>
+
+				<div class="actions">
+					<p:commandButton value="Salvar"
+						action="#{cadastroClienteBean.salvar}" process="@form"
+						update="@form:messages @form" icon="pi pi-check"
+						styleClass="primary" />
+					<h:link outcome="/index.xhtml" value="Voltar" styleClass="btn-link" />
+				</div>
+			</div>
+		</h:form>
+	</div>
+
 </h:body>
 </html>

@@ -5,33 +5,57 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
 	<title>Abertura de Conta</title>
+	<h:outputStylesheet library="style" name="estilo.css" />
 </h:head>
 <h:body>
-	<h:form id="f">
-		<p:messages closable="true" />
-		<p:panel header="Abertura de Conta">
-			<p:panelGrid columns="2" layout="grid">
-				<h:outputLabel for="ag" value="Agência" />
-				<p:inputText id="ag" value="#{aberturaContaBean.conta.agencia}"
-					maxlength="10" required="true" />
 
-				<h:outputLabel for="num" value="Número" />
-				<p:inputText id="num" value="#{aberturaContaBean.conta.numero}"
-					maxlength="20" required="true" />
+	<header class="app-header">
+		<div class="app-header__inner">
+			<div class="brand">
+				<span class="brand__dot"></span> Abertura de Conta
+			</div>
+			<h:link outcome="/index.xhtml" styleClass="btn-link btn-ghost">
+				<span class="pi pi-home"></span> Home
+      </h:link>
+		</div>
+	</header>
 
-				<h:outputLabel for="tipo" value="Tipo" />
-				<p:selectOneMenu id="tipo" value="#{aberturaContaBean.conta.tipo}">
-					<f:selectItems value="#{aberturaContaBean.tipoContas}" var="t"
-						itemLabel="#{t}" itemValue="#{t}" />
-				</p:selectOneMenu>
+	<div class="container compact">
+		<h:form id="f">
+			<p:messages closable="true" />
 
-				<h:outputLabel for="cliente" value="Cliente (ID)" />
-				<p:inputText id="cliente" value="#{aberturaContaBean.clienteId}"
-					required="true" label="Cliente (ID)" />
-			</p:panelGrid>
-			<p:commandButton value="Abrir" action="#{aberturaContaBean.abrir}"
-				process="@form" update="@form" icon="pi pi-plus" />
-		</p:panel>
-	</h:form>
+			<h2 class="section-title">Dados da Conta</h2>
+			<div class="card">
+				<div class="form-grid form-grid--narrow">
+					<h:outputLabel for="ag" value="Agência" />
+					<p:inputText id="ag" value="#{aberturaContaBean.conta.agencia}"
+						maxlength="10" required="true" label="Agência" />
+
+					<h:outputLabel for="num" value="Número" />
+					<p:inputText id="num" value="#{aberturaContaBean.conta.numero}"
+						maxlength="20" required="true" label="Número" />
+
+					<h:outputLabel for="tipo" value="Tipo" />
+					<p:selectOneMenu id="tipo" value="#{aberturaContaBean.conta.tipo}">
+						<f:selectItems value="#{aberturaContaBean.tipoContas}" var="t"
+							itemLabel="#{t}" itemValue="#{t}" />
+					</p:selectOneMenu>
+
+					<h:outputLabel for="cliente" value="Cliente (ID)" />
+					<p:inputText id="cliente" value="#{aberturaContaBean.clienteId}"
+						required="true" label="Cliente (ID)" />
+				</div>
+
+				<div class="stack-16"></div>
+				<div class="actions">
+					<p:commandButton value="Abrir" action="#{aberturaContaBean.abrir}"
+						process="@form" update="@form" icon="pi pi-plus"
+						styleClass="primary" />
+					<h:link outcome="/index.xhtml" value="Voltar" styleClass="btn-link" />
+				</div>
+			</div>
+		</h:form>
+	</div>
+
 </h:body>
 </html>

@@ -4,33 +4,56 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Transferência</title>
+	<h:outputStylesheet library="style" name="estilo.css" />
 </h:head>
 <h:body>
-	<h:form id="f">
-		<p:messages closable="true" />
-		<p:panel header="Transferência entre Contas">
-			<p:panelGrid columns="2" layout="grid">
-				<h:outputLabel for="orig" value="Conta Origem (ID)" />
-				<p:inputText id="orig" value="#{transferenciaBean.contaOrigemId}"
-					required="true" />
 
-				<h:outputLabel for="dest" value="Conta Destino (ID)" />
-				<p:inputText id="dest" value="#{transferenciaBean.contaDestinoId}"
-					required="true" />
+	<header class="app-header">
+		<div class="app-header__inner">
+			<div class="brand">
+				<span class="brand__dot"></span> Transferência
+			</div>
+			<h:link outcome="/index.xhtml" styleClass="btn-link btn-ghost">
+				<span class="pi pi-home"></span> Home
+      </h:link>
+		</div>
+	</header>
 
-				<h:outputLabel for="val" value="Valor" />
-				<p:inputNumber id="val" value="#{transferenciaBean.valor}"
-					symbol=" R$" decimalSeparator="," thousandSeparator="."
-					required="true" />
+	<div class="container compact">
+		<h:form id="f">
+			<p:messages closable="true" />
 
-				<h:outputLabel for="hist" value="Histórico" />
-				<p:inputText id="hist" value="#{transferenciaBean.historico}"
-					maxlength="200" />
-			</p:panelGrid>
-			<p:commandButton value="Transferir"
-				action="#{transferenciaBean.transferir}" process="@form"
-				update="@form" icon="pi pi-check" />
-		</p:panel>
-	</h:form>
+			<h2 class="section-title">Transferência entre Contas</h2>
+			<div class="card">
+				<div class="form-grid form-grid--narrow">
+					<h:outputLabel for="orig" value="Conta Origem (ID)" />
+					<p:inputText id="orig" value="#{transferenciaBean.contaOrigemId}"
+						required="true" />
+
+					<h:outputLabel for="dest" value="Conta Destino (ID)" />
+					<p:inputText id="dest" value="#{transferenciaBean.contaDestinoId}"
+						required="true" />
+
+					<h:outputLabel for="val" value="Valor" />
+					<p:inputNumber id="val" value="#{transferenciaBean.valor}"
+						symbol=" R$" decimalSeparator="," thousandSeparator="."
+						required="true" />
+
+					<h:outputLabel for="hist" value="Histórico" />
+					<p:inputText id="hist" value="#{transferenciaBean.historico}"
+						maxlength="200" />
+				</div>
+
+				<div class="stack-16"></div>
+				<div class="actions">
+					<p:commandButton value="Transferir"
+						action="#{transferenciaBean.transferir}" process="@form"
+						update="@form" icon="pi pi-check" styleClass="primary" />
+					<h:link outcome="/index.xhtml" value="Voltar" styleClass="btn-link" />
+				</div>
+			</div>
+		</h:form>
+	</div>
+
 </h:body>
 </html>

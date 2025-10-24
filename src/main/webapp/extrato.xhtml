@@ -4,53 +4,79 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-
 <h:head>
 	<title>Extrato</title>
+	<h:outputStylesheet library="style" name="estilo.css" />
 </h:head>
 <h:body>
-	<h:form id="f">
-		<p:messages closable="true" />
-		<p:panel header="Extrato de Conta">
-			<p:panelGrid columns="2" layout="grid">
-				<h:outputLabel for="contaId" value="Conta (ID)" />
-				<p:inputText id="contaId" value="#{extratoBean.contaId}"
-					required="true" />
 
-				<h:outputLabel for="de" value="De" />
-				<p:calendar id="de" value="#{extratoBean.de}" pattern="dd/MM/yyyy" />
+	<header class="app-header">
+		<div class="app-header__inner">
+			<div class="brand">
+				<span class="brand__dot"></span> Extrato
+			</div>
+			<h:link outcome="/index.xhtml" styleClass="btn-link btn-ghost">
+				<span class="pi pi-home"></span> Home
+      </h:link>
+		</div>
+	</header>
 
-				<h:outputLabel for="ate" value="Até" />
-				<p:calendar id="ate" value="#{extratoBean.ate}" pattern="dd/MM/yyyy" />
-			</p:panelGrid>
+	<div class="container compact">
+		<h:form id="f">
+			<p:messages closable="true" />
 
-			<p:commandButton value="Buscar"
-				actionListener="#{extratoBean.buscar}" update="@form"
-				icon="pi pi-search" />
+			<h2 class="section-title">Filtros</h2>
+			<div class="card">
+				<div class="form-grid form-grid--narrow">
+					<h:outputLabel for="contaId" value="Conta (ID)" />
+					<p:inputText id="contaId" value="#{extratoBean.contaId}"
+						required="true" />
 
-			<p:separator />
+					<h:outputLabel for="de" value="De" />
+					<p:calendar id="de" value="#{extratoBean.de}" pattern="dd/MM/yyyy" />
 
-			<h:panelGroup rendered="#{not empty extratoBean.conta}">
-				<h:outputText
-					value="Agência: #{extratoBean.conta.agencia} - Conta: #{extratoBean.conta.numero} - Saldo: ">
-					<f:convertNumber type="currency" currencySymbol="R$ " />
-				</h:outputText>
-				<h:outputText value="#{extratoBean.conta.saldo}">
-					<f:convertNumber type="currency" currencySymbol="R$ " />
-				</h:outputText>
+					<h:outputLabel for="ate" value="Até" />
+					<p:calendar id="ate" value="#{extratoBean.ate}"
+						pattern="dd/MM/yyyy" />
+				</div>
+
+				<div class="stack-16"></div>
+				<div class="actions">
+					<p:commandButton value="Buscar"
+						actionListener="#{extratoBean.buscar}" update="@form"
+						icon="pi pi-search" styleClass="primary" />
+					<h:link outcome="/index.xhtml" value="Voltar" styleClass="btn-link" />
+				</div>
+			</div>
+
+			<div class="stack-16"></div>
+
+			<h:panelGroup rendered="#{not empty extratoBean.conta}"
+				styleClass="card">
+				<div class="actions" style="justify-content: flex-start;">
+					<span style="color: var(--muted)">Agência:</span> <strong>#{extratoBean.conta.agencia}</strong>
+					<span style="color: var(--muted)">• Conta:</span> <strong>#{extratoBean.conta.numero}</strong>
+					<span style="color: var(--muted)">• Saldo:</span> <strong>
+						<h:outputText value="#{extratoBean.conta.saldo}">
+							<f:convertNumber type="currency" currencySymbol="R$ " />
+						</h:outputText>
+					</strong>
+				</div>
 			</h:panelGroup>
+
+			<div class="stack-16"></div>
 
 			<p:dataTable value="#{extratoBean.pagina}" var="l"
 				rows="#{extratoBean.pageSize}" paginator="false">
-				<p:column headerText="Data/Hora">
+				<p:column headerText="Data/Hora" style="width:160px">
 					<h:outputText value="#{l.dataHora}">
 						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
 					</h:outputText>
 				</p:column>
-				<p:column headerText="Tipo">
+				<p:column headerText="Tipo" style="width:90px">
 					<h:outputText value="#{l.tipo}" />
 				</p:column>
-				<p:column headerText="Valor">
+				<p:column headerText="Valor" style="width:140px">
 					<h:outputText value="#{l.valor}">
 						<f:convertNumber type="currency" currencySymbol="R$ " />
 					</h:outputText>
@@ -58,22 +84,27 @@
 				<p:column headerText="Histórico">
 					<h:outputText value="#{l.historico}" />
 				</p:column>
-				<p:column headerText="Ref.">
+				<p:column headerText="Ref." style="width:160px">
 					<h:outputText value="#{l.referencia}" />
 				</p:column>
 			</p:dataTable>
 
-			<div style="margin-top: 10px">
+			<div class="stack-16"></div>
+
+			<div class="actions">
 				<p:commandButton value="« Anterior"
 					actionListener="#{extratoBean.prev}" update="@form"
+					styleClass="ui-button-secondary"
 					disabled="#{extratoBean.first == 0}" />
 				<p:commandButton value="Próximo »"
 					actionListener="#{extratoBean.next}" update="@form"
 					disabled="#{extratoBean.first + extratoBean.pageSize >= extratoBean.total}" />
-				<h:outputText
-					value="#{extratoBean.first + 1} - #{extratoBean.first + fn:length(extratoBean.pagina)} de #{extratoBean.total}" />
+				<span style="color: var(--muted); margin-left: 10px">
+					#{extratoBean.first + 1} - #{extratoBean.first +
+					fn:length(extratoBean.pagina)} de #{extratoBean.total} </span>
 			</div>
-		</p:panel>
-	</h:form>
+		</h:form>
+	</div>
+
 </h:body>
 </html>
