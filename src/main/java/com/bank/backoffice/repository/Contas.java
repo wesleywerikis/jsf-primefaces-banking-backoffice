@@ -21,8 +21,8 @@ public class Contas implements Serializable {
 
 	public Conta porAgenciaNumero(String ag, String num) {
 		try {
-			return em.createQuery("from Conta c where c.agencia = :ag and c.numero = :num", Conta.class)
-					.setParameter("ag", ag).setParameter("nume", num).getSingleResult();
+			return em.createQuery("from Conta c where c.agencia = :agencia and c.numero = :numero", Conta.class)
+					.setParameter("agencia", ag).setParameter("numero", num).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}

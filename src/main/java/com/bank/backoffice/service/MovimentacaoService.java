@@ -11,6 +11,7 @@ import com.bank.backoffice.model.Lancamento;
 import com.bank.backoffice.model.Lancamento.Tipo;
 import com.bank.backoffice.repository.Contas;
 import com.bank.backoffice.repository.Lancamentos;
+import com.bank.backoffice.util.Transacional;
 
 public class MovimentacaoService implements Serializable {
 
@@ -22,11 +23,13 @@ public class MovimentacaoService implements Serializable {
 	@Inject
 	private Lancamentos lancamentos;
 
+	@Transacional
 	public void transferir(Long idOrigem, Long idDestino, BigDecimal valor, String historico) {
 		if (valor == null || valor.signum() <= 0)
 			throw new IllegalArgumentException("Valor inválido");
 		if (idOrigem.equals(idDestino))
-			throw new IllegalArgumentException("Contas dever ser distintas");
+			throw new IllegalArgumentException("Contas devem ser distintas");
+
 
 		Conta origem = contas.porId(idOrigem);
 		Conta destino = contas.porId(idDestino);
