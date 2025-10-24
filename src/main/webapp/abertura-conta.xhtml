@@ -21,16 +21,16 @@
 
 				<h:outputLabel for="tipo" value="Tipo" />
 				<p:selectOneMenu id="tipo" value="#{aberturaContaBean.conta.tipo}">
-					<f:selectItems value="#{aberturaContaBean.tipos}" />
+					<f:selectItems value="#{aberturaContaBean.tipoContas}" var="t"
+						itemLabel="#{t}" itemValue="#{t}" />
 				</p:selectOneMenu>
 
 				<h:outputLabel for="cliente" value="Cliente (ID)" />
-				<p:inputText id="cliente"
-					value="#{aberturaContaBean.conta.cliente.id}" required="true" />
+				<p:inputText id="cliente" value="#{aberturaContaBean.clienteId}"
+					required="true" label="Cliente (ID)" />
 			</p:panelGrid>
-			<p:commandButton value="Abrir"
-				actionListener="#{aberturaContaBean.abrir}" update="@form"
-				icon="pi pi-plus" />
+			<p:commandButton value="Abrir" action="#{aberturaContaBean.abrir}"
+				process="@form" update="@form" icon="pi pi-plus" />
 		</p:panel>
 	</h:form>
 </h:body>
