@@ -14,7 +14,7 @@
 		<p:panel header="Extrato de Conta">
 			<p:panelGrid columns="2" layout="grid">
 				<h:outputLabel for="contaId" value="Conta (ID)" />
-				<p:inputText id="contaId" value="#{extratoBean.conta.id}"
+				<p:inputText id="contaId" value="#{extratoBean.contaId}"
 					required="true" />
 
 				<h:outputLabel for="de" value="De" />
@@ -29,6 +29,16 @@
 				icon="pi pi-search" />
 
 			<p:separator />
+
+			<h:panelGroup rendered="#{not empty extratoBean.conta}">
+				<h:outputText
+					value="Agência: #{extratoBean.conta.agencia} - Conta: #{extratoBean.conta.numero} - Saldo: ">
+					<f:convertNumber type="currency" currencySymbol="R$ " />
+				</h:outputText>
+				<h:outputText value="#{extratoBean.conta.saldo}">
+					<f:convertNumber type="currency" currencySymbol="R$ " />
+				</h:outputText>
+			</h:panelGroup>
 
 			<p:dataTable value="#{extratoBean.pagina}" var="l"
 				rows="#{extratoBean.pageSize}" paginator="false">

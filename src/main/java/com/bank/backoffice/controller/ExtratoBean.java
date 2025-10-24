@@ -1,16 +1,20 @@
 package com.bank.backoffice.controller;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.bank.backoffice.model.Conta;
 import com.bank.backoffice.model.Lancamento;
+import com.bank.backoffice.repository.Contas;
 import com.bank.backoffice.repository.Lancamentos;
 
 @Named
@@ -19,7 +23,6 @@ public class ExtratoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Conta conta;
 	private Date de;
 	private Date ate;
 
@@ -28,17 +31,61 @@ public class ExtratoBean implements Serializable {
 	private long total = 0;
 	private List<Lancamento> pagina;
 
+	private Long contaId;
+	private Conta conta;
+
+	@Inject
+	private Contas contas;
+
 	@Inject
 	private Lancamentos repo;
 
 	public void buscar() {
-		if (conta == null) {
+		first = 0;
+		if (contaId == null) {
 			pagina = Collections.emptyList();
 			total = 0;
 			return;
 		}
-		pagina = repo.extrato(conta, de, ate, first, pageSize);
-		total = repo.extratoCount(conta, de, ate);
+		conta = contas.porId(contaId);
+		if (conta == null) {
+			addMsg("Conta não encontrada");
+			pagina = Collections.emptyList();
+			total = 0;
+			return;
+		}
+
+		Date deNorm = asStartOfDay(de);
+		Date ateNorm = nextDayStart(ate);
+
+		pagina = repo.extrato(conta, deNorm, ateNorm, first, pageSize);
+		total = repo.extratoCount(conta, deNorm, ateNorm);
+
+		if (total == 0) {
+			addMsg("Nenhum lançamento encontrado para os filtros informados.");
+		}
+	}
+
+	private static Date asStartOfDay(Date d) {
+		if (d == null)
+			return null;
+
+		Calendar c = Calendar.getInstance();
+		c.setTime(d);
+		c.set(Calendar.HOUR_OF_DAY, 0);
+		c.set(Calendar.MINUTE, 0);
+		c.set(Calendar.SECOND, 0);
+		c.set(Calendar.MILLISECOND, 0);
+		return c.getTime();
+	}
+
+	private static Date nextDayStart(Date d) {
+		if (d == null)
+			return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(asStartOfDay(d));
+		c.add(Calendar.DATE, 1);
+		return c.getTime();
 	}
 
 	public void next() {
@@ -53,6 +100,18 @@ public class ExtratoBean implements Serializable {
 			first -= pageSize;
 			buscar();
 		}
+	}
+
+	private void addMsg(String s) {
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s));
+	}
+
+	public Long getContaId() {
+		return contaId;
+	}
+
+	public void setContaId(Long contaId) {
+		this.contaId = contaId;
 	}
 
 	public Conta getConta() {
