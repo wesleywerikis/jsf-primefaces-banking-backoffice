@@ -2,7 +2,7 @@ package com.bank.backoffice.controller;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -20,10 +20,11 @@ public class CadastroClienteBean implements Serializable {
 	@Inject
 	private CadastroClienteService service;
 
-	public void salvar() {
+	public String salvar() {
 		service.salvar(cliente);
 		addMsg("Cliente salvo!");
 		cliente = new Cliente();
+		return null;
 	}
 
 	private void addMsg(String s) {
