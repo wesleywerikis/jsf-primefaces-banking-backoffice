@@ -215,19 +215,19 @@ volumes:
 
 | Cadastro de Cliente |
 |:-------------------:|
- ![Cadastro](docs/img/cadastro-cliente.png) |
+| ![Cadastro](docs/img/cadastro-cliente.png) |
 
 | Abertura de Conta |
 |:-----------------:|
 | ![Abertura de Conta](docs/img/abertura-conta.png) |
 
 | Transferência |
-|:-------------:| 
- ![Transferência](docs/img/transferencia.png) |
- 
+|:-------------:|
+| ![Transferência](docs/img/transferencia.png) |
+
 | Extrato |
 |:-------:|
- ![Extrato](docs/img/extrato.png) |
+| ![Extrato](docs/img/extrato.png) |
 
 > Interface moderna com **tema escuro**, **layout responsivo** e **componentes PrimeFaces estilizados**.
 
