@@ -209,13 +209,25 @@ volumes:
 
 ## 📸 Preview do Sistema
 
-| Página Inicial | Cadastro de Cliente |
-|:---------------:|:-------------------:|
-| ![Home](docs/img/home.png) | ![Cadastro](docs/img/cadastro-cliente.png) |
+| Página Inicial |
+|:--------------:|
+| ![Home](docs/img/home.png) |
 
-| Abertura de Conta | Transferência | Extrato |
-|:------------------:|:--------------:|:-------:|
-| ![Abertura de Conta](docs/img/abertura-conta.png) | ![Transferência](docs/img/transferencia.png) | ![Extrato](docs/img/extrato.png) |
+| Cadastro de Cliente |
+|:-------------------:|
+ ![Cadastro](docs/img/cadastro-cliente.png) |
+
+| Abertura de Conta |
+|:-----------------:|
+| ![Abertura de Conta](docs/img/abertura-conta.png) |
+
+| Transferência |
+|:-------------:| 
+ ![Transferência](docs/img/transferencia.png) |
+ 
+| Extrato |
+|:-------:|
+ ![Extrato](docs/img/extrato.png) |
 
 > Interface moderna com **tema escuro**, **layout responsivo** e **componentes PrimeFaces estilizados**.
 
