@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -70,7 +71,7 @@ public class ExtratoBean implements Serializable {
 		if (d == null)
 			return null;
 
-		Calendar c = Calendar.getInstance();
+		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
 		c.setTime(d);
 		c.set(Calendar.HOUR_OF_DAY, 0);
 		c.set(Calendar.MINUTE, 0);
@@ -82,7 +83,7 @@ public class ExtratoBean implements Serializable {
 	private static Date nextDayStart(Date d) {
 		if (d == null)
 			return null;
-		Calendar c = Calendar.getInstance();
+		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
 		c.setTime(asStartOfDay(d));
 		c.add(Calendar.DATE, 1);
 		return c.getTime();

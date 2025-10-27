@@ -70,7 +70,7 @@
 				rows="#{extratoBean.pageSize}" paginator="false">
 				<p:column headerText="Data/Hora" style="width:160px">
 					<h:outputText value="#{l.dataHora}">
-						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" timeZone="America/Sao_Paulo"/>
 					</h:outputText>
 				</p:column>
 				<p:column headerText="Tipo" style="width:90px">
